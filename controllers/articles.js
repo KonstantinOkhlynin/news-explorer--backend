@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable consistent-return */
 const Article = require('../models/article');
 const NotForbiddenError = require('../errors/NotForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
@@ -42,5 +40,6 @@ module.exports.createArticle = (req, res, next) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError(`Ошибка валидации ${err.message}`));
       }
+      return next(err);
     });
 };

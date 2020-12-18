@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 const validator = require('validator');
-const { BadRequestError } = require('./BadRequestError');
+const { BadRequestError } = require('../errors/BadRequestError');
 
 module.exports = (link) => {
   if (validator.isURL(link)) {

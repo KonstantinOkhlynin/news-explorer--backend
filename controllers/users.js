@@ -10,17 +10,16 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getUser = (req, res, next) => {
-  User.findById(req.params.me)
-    .then((data) => {
-      if (!data) {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (!user) {
         return next(new NotFoundError('Пользователь с таким id не найдён'));
       }
-      return res.status(200).send(data);
+      return res.status(200).send({ data: user });
     })
     .catch((err) => next(new BadRequestError(`Неправильный id ${err.message}`)));
 };
 
-// eslint-disable-next-line consistent-return
 module.exports.createUser = (req, res, next) => {
   const {
     name, email, password,
