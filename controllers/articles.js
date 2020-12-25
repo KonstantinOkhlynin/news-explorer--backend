@@ -10,12 +10,12 @@ module.exports.getArticles = (req, res, next) => {
 };
 
 module.exports.deleteArticle = (req, res, next) => {
-  Article.findByIdAndRemove(req.params.id).orFail(new Error('NotValidId'))
+  Article.findById(req.params.id).orFail(new Error('NotValidId'))
     .then((article) => {
       if (article.owner.toString() !== req.user._id) {
         throw new NotForbiddenError('Нельзя удалить чужую карточку');
       }
-      return res.status(200).send(article);
+      return res.status(200).send(article.findByIdAndRemove());
     })
     .catch((err) => {
       if (err.message === 'NotValidId') {
@@ -35,7 +35,15 @@ module.exports.createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner,
   })
-    .then((article) => res.status(200).send({ article }))
+    .then((article) => res.status(200).send({
+      keyword: article.keyword,
+      title: article.title,
+      text: article.text,
+      date: article.date,
+      source: article.source,
+      link: article.link,
+      image: article.image,
+    }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError(`Ошибка валидации ${err.message}`));

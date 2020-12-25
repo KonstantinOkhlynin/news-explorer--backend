@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const validator = require('validator');
 const { BadRequestError } = require('../errors/BadRequestError');
 

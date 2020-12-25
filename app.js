@@ -8,13 +8,10 @@ const routers = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./tools/rateLimit');
 const centralizedErrorHandler = require('./tools/centralizedErrorHandler');
+const NotFoundError = require('./errors/NotFoundError');
+const { PORT, MONGODB_URL } = require('./configurations');
 
 const app = express();
-
-const {
-  PORT = 3000,
-  MONGODB_URL = 'mongodb://localhost:27017/newsexplorerdb',
-} = process.env;
 
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
@@ -23,12 +20,12 @@ mongoose.connect(MONGODB_URL, {
   useUnifiedTopology: true,
 });
 
-app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestLogger);
+app.use(limiter);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -36,6 +33,9 @@ app.get('/crash-test', () => {
 });
 
 app.use('/', routers);
+app.use(() => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
+});
 
 app.use(errorLogger);
 app.use(errors());
