@@ -1,14 +1,14 @@
 Дипломная работа - Backend для проекта news explorer
 =============================
 ## Домены
-- http(s)://api.news-explorer.students.nomoreparties.xyz
-- http(s)://www.api.news-explorer.students.nomoreparties.xyz
+- http(s)://news-explorer.students.nomoreparties.xyz
+- http(s)://www.news-explorer.students.nomoreparties.xyz
 
 ## Публичный IP
 130.193.49.59
 
 ## Запросы
-- POST/signup - создается пользователь, для отправки обязательные поля: name, about, avatar, email, password 
+- POST/signup - создается пользователь, для отправки обязательные поля: name, email, password 
 - POST/signin - авторизация пользователя, для авторизации необходимо ввести email, password
 - GET /users/me - выводится JSON объект конкретного юзера, если юзер не найден выводится ошибка 
 - GET /articles - выводится JSON список всех статей 
