@@ -1,4 +1,5 @@
 const Article = require('../models/article');
+const message = require('../tools/messages');
 const NotForbiddenError = require('../errors/NotForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -10,18 +11,19 @@ module.exports.getArticles = (req, res, next) => {
 };
 
 module.exports.deleteArticle = (req, res, next) => {
-  Article.findById(req.params.id).orFail(new Error('NotValidId'))
+  Article.findById(req.params.id).populate('owner').orFail(new Error('NotValidId'))
     .then((article) => {
-      if (article.owner.toString() !== req.user._id) {
-        throw new NotForbiddenError('Нельзя удалить чужую карточку');
+      if (article.owner._id.toString() !== req.user._id) {
+        throw new NotForbiddenError(message.dontDelete);
       }
-      return res.status(200).send(article.findByIdAndRemove());
+      res.send(article);
+      return Article.findByIdAndRemove(article);
     })
     .catch((err) => {
       if (err.message === 'NotValidId') {
-        return next(new NotFoundError(`Карточка с id ${req.params.id} не найдена`));
+        return next(new NotFoundError(message.articleNotFound));
       } if (err.name === 'CastError') {
-        return next(new BadRequestError(`Ошибка валидации id карточки ${req.params.id}`));
+        return next(new BadRequestError(message.validationError));
       }
       return next(err);
     });
@@ -46,7 +48,7 @@ module.exports.createArticle = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequestError(`Ошибка валидации ${err.message}`));
+        return next(new BadRequestError(message.validationError));
       }
       return next(err);
     });

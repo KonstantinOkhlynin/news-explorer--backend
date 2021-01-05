@@ -1,6 +1,7 @@
-require('dotenv').config()
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const message = require('../tools/messages');
 const User = require('../models/user');
 const { JWT_SECRET } = require('../configurations');
 
@@ -13,11 +14,11 @@ module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        return next(new NotFoundError('Пользователь с таким id не найдён'));
+        return next(new NotFoundError(message.userNotFound));
       }
       return res.status(200).send({ data: user });
     })
-    .catch((err) => next(new BadRequestError(`Неправильный id ${err.message}`)));
+    .catch(() => next(new BadRequestError(message.errorId)));
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -30,7 +31,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     .then((user) => {
       if (!user) {
-        return next(new NotFoundError('Проверьте правильность данных'));
+        return next(new NotFoundError(message.dataError));
       }
       return res.status(200).send({
         _id: user._id,
@@ -40,10 +41,10 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequestError(`Ошибка валидации ${err.message}`));
+        return next(new BadRequestError(message.validationError));
       }
       if (err.name === 'MongoError' && err.code === 11000) {
-        return next(new ConflictError('Данный email уже используется'));
+        return next(new ConflictError(message.emailError));
       }
       return next(err);
     });
@@ -61,5 +62,5 @@ module.exports.login = (req, res, next) => {
       );
       res.send({ token });
     })
-    .catch((err) => next(new UnauthorizedError(`${err.message}`)));
+    .catch(() => next(new UnauthorizedError(message.unAuthorized)));
 };

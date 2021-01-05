@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const articlesRoutes = require('./articles');
 const usersRoutes = require('./users');
+const message = require('../tools/messages');
+const NotFoundError = require('../errors/NotFoundError');
 const { createUser, login } = require('../controllers/users');
 
 router.post('/signin', celebrate({
@@ -20,5 +22,7 @@ router.post('/signup', celebrate({
 }), createUser);
 router.use('/articles', articlesRoutes);
 router.use('/users', usersRoutes);
-
+router.use(() => {
+  throw new NotFoundError(message.notFound);
+});
 module.exports = router;

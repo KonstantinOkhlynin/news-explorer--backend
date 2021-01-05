@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -9,7 +9,6 @@ const routers = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./tools/rateLimit');
 const centralizedErrorHandler = require('./tools/centralizedErrorHandler');
-const NotFoundError = require('./errors/NotFoundError');
 const { PORT, MONGODB_URL } = require('./configurations');
 
 const app = express();
@@ -34,9 +33,6 @@ app.get('/crash-test', () => {
 });
 
 app.use('/', routers);
-app.use(() => {
-  throw new NotFoundError('Запрашиваемый ресурс не найден');
-});
 
 app.use(errorLogger);
 app.use(errors());
