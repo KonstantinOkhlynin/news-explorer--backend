@@ -46,12 +46,11 @@ mongoose.connect(MONGODB_URL, {
 //   ],
 //   credentials: true,
 // };
-
+app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
 app.use(requestLogger);
 app.use(limiter);
 app.get('/crash-test', () => {
