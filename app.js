@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const routers = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -20,17 +21,40 @@ mongoose.connect(MONGODB_URL, {
   useUnifiedTopology: true,
 });
 
+const whitelist = [
+  'http://localhost:8080',
+  'https://news-explorer.students.nomoreparties.xyz',
+  'http://news-explorer.students.nomoreparties.xyz',
+  'https://www.news-explorer.students.nomoreparties.xyz',
+  'http://www.news-explorer.students.nomoreparties.xyz',
+  'https://konstantinokhlynin.github.io',
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: [
+    'Content-Type',
+    'origin',
+    'x-access-token',
+    'authorization',
+    'credentials',
+  ],
+  credentials: true,
+};
+
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-
-  next();
-});
+app.use(cors(corsOptions));
 app.use(requestLogger);
 app.use(limiter);
 app.get('/crash-test', () => {
