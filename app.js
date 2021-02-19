@@ -24,10 +24,6 @@ mongoose.connect(MONGODB_URL, {
 
 const whitelist = [
   'http://localhost:8080',
-  'https://news-explorer.students.nomoreparties.xyz',
-  'http://news-explorer.students.nomoreparties.xyz',
-  'https://www.news-explorer.students.nomoreparties.xyz',
-  'http://www.news-explorer.students.nomoreparties.xyz',
   'https://konstantinokhlynin.github.io',
 ];
 const corsOptions = {
@@ -55,9 +51,9 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(requestLogger);
 app.use(limiter);
-app.use(cors(corsOptions));
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
