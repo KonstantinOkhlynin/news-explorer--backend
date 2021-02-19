@@ -54,7 +54,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors(corsOptions));
 app.use(requestLogger);
 app.use(limiter);
 app.get('/crash-test', () => {
@@ -62,7 +61,7 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-
+app.use(cors(corsOptions));
 app.use('/', routers);
 
 app.use(errorLogger);
