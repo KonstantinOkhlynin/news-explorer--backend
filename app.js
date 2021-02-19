@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -56,12 +57,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestLogger);
 app.use(limiter);
+app.use(cors(corsOptions));
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.use(cors(corsOptions));
+
 app.use('/', routers);
 
 app.use(errorLogger);
