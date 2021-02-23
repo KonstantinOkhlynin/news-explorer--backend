@@ -6,7 +6,7 @@ const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find({ owner: req.user._id })
-  .then((articles) => { res.send({ data: articles }); })
+  .then((articles) => { res.send({ articles }); })
   .catch(next);
 };
 
