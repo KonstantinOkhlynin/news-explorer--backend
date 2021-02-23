@@ -6,8 +6,8 @@ const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find(req.user._id)
-  .then((articles) => { res.send({ articles }); })
-  .catch(next);
+    .then((articles) => { res.send(articles); })
+    .catch(next);
 };
 
 module.exports.deleteArticle = (req, res, next) => {
