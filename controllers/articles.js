@@ -5,9 +5,9 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
-    .then((articles) => res.status(200).send(articles))
-    .catch(next);
+  Article.find({ owner: req.user._id })
+  .then((articles) => { res.send({ data: articles }); })
+  .catch(next);
 };
 
 module.exports.deleteArticle = (req, res, next) => {
