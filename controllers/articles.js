@@ -5,7 +5,7 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find(req.user._id)
+  Article.find({ owner: req.user._id })
     .then((articles) => { res.send(articles); })
     .catch(next);
 };
