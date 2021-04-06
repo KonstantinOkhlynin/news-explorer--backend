@@ -95,4 +95,4 @@
 }
 ```
 #### ‣ DELETE/`http://localhost:3000/articles/:id` - delete your own articles. The user cannot delete someone else's article. Instead of `me`, you need to substitute the id of the article you want to delete. Usually the id is returned when the article is created.
-## Attention! All requests except signup and signin are protected by authentication. In order for you to create, delete, and receive cards, you need to save the token in the Api testing program. The token is returned when you log in, you need to put it in the `Authorization` section and select the `Bearer token' type.
+## Attention! All requests except signup and signin are protected by authentication. In order for you to create, delete, and receive cards, you need to save the token in the Api testing program. The token is returned when you log in, you need to put it in the `Authorization` section and select the `Bearer token` type.
