@@ -3,7 +3,7 @@
 ### Diploma project of the web development course on the online learning portal Practicum by Yandex. Backend for the website [NewsExplorer](https://github.com/KonstantinOkhlynin/NewsExplorer-Frontend), which allows you to register and authorize the user on the website, as well as save and delete news articles in the user's personal profile.
 ## Goal
 ### The goal of this project is to consolidate in practice all the knowledge gained during the course and get a [Certificate](https://github.com/KonstantinOkhlynin/Certificate-Practicum-by-Yandex) about the course completion. In this project, it was a test of such skills as:
-# # # # 1. Server development on Node.js;
+#### 1. Server development on Node.js;
 #### 2. Using the database;
 #### 3. Using the API.REST principles;
 ## Languages
@@ -95,4 +95,4 @@
 }
 ```
 #### ‣ DELETE/`http://localhost:3000/articles/:id` - delete your own articles. The user cannot delete someone else's article. Instead of `me`, you need to substitute the id of the article you want to delete. Usually the id is returned when the article is created.
-## Attention! All requests except signup and signin are protected by authentication. In order for you to create, delete, and receive cards, you need to save the token in the Api testing program. The token is returned when you log in, you need to put it in the `Authorization 'section and select the `Bearer token' type.
+## Attention! All requests except signup and signin are protected by authentication. In order for you to create, delete, and receive cards, you need to save the token in the Api testing program. The token is returned when you log in, you need to put it in the `Authorization` section and select the `Bearer token' type.
