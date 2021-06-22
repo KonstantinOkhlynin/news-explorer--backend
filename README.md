@@ -1,12 +1,7 @@
-   ![Header](https://github.com/KonstantinOkhlynin/KonstantinOkhlynin/blob/main/assets/Logo.svg)
-   [![Header](https://github.com/KonstantinOkhlynin/KonstantinOkhlynin/blob/main/assets/EnglishReadme.svg)](https://github.com/KonstantinOkhlynin/NewsExplorer-Backend/blob/master/README.EN.md)
+# Author: Konstantin Okhlynin
+# [**English Readme**](https://github.com/KonstantinOkhlynin/NewsExplorer-Backend/blob/master/README.EN.md)
 # NewsExplorer-Backend
 ### Дипломный проект курса веб-разработки на портале онлайн обучения Яндекс.Практикум. Бэкенд для веб-сайта [NewsExplorer](https://github.com/KonstantinOkhlynin/NewsExplorer-Frontend), который позволяет регистрировать и выполнять авторизацию пользователя на веб-сайте, а также сохранять и удалять статьи новостей в личном профиле пользователя. 
-## Цель 
-### Целью данного проекта является закрепить на практике все полученные на курсе знания и получить [Сертификат](https://github.com/KonstantinOkhlynin/Certificate-Practicum-by-Yandex) о прохождении курса. В данном проекте это была проверка таких навыков как:
-#### 1. Серверная разработка на Node.js;
-#### 2. Использование базы данных;
-#### 3. Использование принципов API.REST;
 ## Языки
 ### ‣ JavaScript(ES6);
 ## Среда выполнения кода

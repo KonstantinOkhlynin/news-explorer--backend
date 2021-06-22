@@ -1,4 +1,4 @@
-    ![Header](https://github.com/KonstantinOkhlynin/KonstantinOkhlynin/blob/main/assets/Logo.svg)
+# Author: Konstantin Okhlynin
 # NewsExplorer-Backend
 ### Diploma project of the web development course on the online learning portal Practicum by Yandex. Backend for the website [NewsExplorer](https://github.com/KonstantinOkhlynin/NewsExplorer-Frontend), which allows you to register and authorize the user on the website, as well as save and delete news articles in the user's personal profile.
 ## Goal
