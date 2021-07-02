@@ -1,11 +1,6 @@
 # Author: Konstantin Okhlynin
 # NewsExplorer-Backend
 ### Diploma project of the web development course on the online learning portal Practicum by Yandex. Backend for the website [NewsExplorer](https://github.com/KonstantinOkhlynin/news-explorer--frontend), which allows you to register and authorize the user on the website, as well as save and delete news articles in the user's personal profile.
-## Goal
-### The goal of this project is to consolidate in practice all the knowledge gained during the course and get a [Certificate](https://github.com/KonstantinOkhlynin/Certificate-Practicum-by-Yandex) about the course completion. In this project, it was a test of such skills as:
-#### 1. Server development on Node.js;
-#### 2. Using the database;
-#### 3. Using the API.REST principles;
 ## Languages
 ### ‣ JavaScript(ES6);
 ## Code execution environment
