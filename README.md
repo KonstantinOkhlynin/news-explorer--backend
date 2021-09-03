@@ -1,7 +1,7 @@
 # Author: Konstantin Okhlynin
 # [**English Readme**](https://github.com/KonstantinOkhlynin/news-explorer--backend/blob/master/README.EN.md)
 # NewsExplorer-Backend
-### Дипломный проект курса веб-разработки на портале онлайн обучения Яндекс.Практикум. Бэкенд для веб-сайта [NewsExplorer](https://github.com/KonstantinOkhlynin/news-explorer--frontend), который позволяет регистрировать и выполнять авторизацию пользователя на веб-сайте, а также сохранять и удалять статьи новостей в личном профиле пользователя. 
+### Бэкенд для веб-сайта [NewsExplorer](https://github.com/KonstantinOkhlynin/news-explorer--frontend), который позволяет регистрировать и выполнять авторизацию пользователя на веб-сайте, а также сохранять и удалять статьи новостей в личном профиле пользователя. 
 ## Языки
 ### ‣ JavaScript(ES6);
 ## Среда выполнения кода
